@@ -1,6 +1,7 @@
 import express from 'express'
 import helmet from 'helmet'
 import cors from 'cors'
+import notesRouter from './routes/notes.js'
 
 const app = express()
 
@@ -8,7 +9,7 @@ const app = express()
 
 app.use(helmet())
 app.use (cors({
-    origin: process.env.ALLOWED_ORIGINS ?. SPLIT(',') || 'http://localhost:3000',
+    origin: process.env.ALLOWED_ORIGINS?.split(',') || 'http://localhost:3000',
     methods: ['GET', 'POST', 'PUT', 'DELETE', 'PATCH'],
     allowedHeaders: ['Content-Type', 'Authorization'],
     credentials: true,
@@ -18,6 +19,9 @@ app.use (cors({
 
 app.use(express.json({ limit: '10kb'}))
 app.use (express.urlencoded({ extended: true, limit: '10kb'}))
+
+//----Routes----
+app.use('/api/notes', notesRouter)
 
 //----Health check----
 
