@@ -1,6 +1,6 @@
 import { Router } from 'express'
 import prisma from '../lib/prisma.js'
-import { validate, validateParams } from '../middleware/validate.js'
+import { validate, validateParams } from '../middlewares/validate.js'
 import { createNoteSchema, updateNoteSchema, noteIdSchema } from '../schemas/note.schema.js'
 
 const router = Router()
